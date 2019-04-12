@@ -14,27 +14,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+            ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+            progressBar.setVisibility(ProgressBar.VISIBLE);
+              if (savedInstanceState == null){
+            Thread s = new Thread() {
+                public void run() {
+                    try {
 
-        Thread s = new Thread() {
-            public void run() {
-                try {
-                    ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-                    progressBar.setVisibility(ProgressBar.VISIBLE);
 
-                    sleep(2000);
-                    // After 2 Seconds redirect to another intent
-                    if(q==0){
-                        Intent i = new Intent(MainActivity.this, SecondActivity.class);
-                        startActivity(i);
-                        q=1;
+                        sleep(2000);
+                        // After 2 Seconds redirect to another intent
+                        if (q == 0) {
+                            Intent i = new Intent(MainActivity.this, SecondActivity.class);
+                            startActivity(i);
+                            //q=1;
+                        }
+                        finish();
+                    } catch (Exception e) {
+
                     }
-                    finish();
                 }
-                catch (Exception e) {
-
-                }
-            }
-        };
+            };
         s.start();
+    }
     }
 }
